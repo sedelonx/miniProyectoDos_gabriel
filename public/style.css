@@ -1,0 +1,303 @@
+/* Muchos se deben preguntar cómo hago para que hayan "animaciones", es bastante sencillo.
+Básicamente en el archivo event_.js le digo al programa que tenga en cuenta las clases con id
+dog, trend y navBar que se encuentrar en el index.html y le digo que le cambie algún atributo
+es decir propiedad a través de algo como
+navBar.style.translateX(50px)
+Por supuesto, esto haría que el objeto se mueve inmediatamente sin animación, así que, cómo se hace?
+Básicamente acá van a ver que muchas clases que definí en este archivo (style.css) tienen una propiedad
+llamada transition-duration y transition-timing-function,
+estas propiedades, en caso de que las definas, le dicen al objeto que ANTE CUALQUIER CAMBIO DE SUS PROPIEDADES
+tendrá un cambio progresivo y no inmediato, dando la sensación de animación, por ejemplo:
+Si tengo una clase 
+
+.texto{
+    color: white;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+
+y yo luego le cambio a algún objeto de la misma clase el color con una función como
+objeto.style.color = "black";
+el objeto al que le cambiamos el color tardará 1 segundo y lo hará acelerándose y descaselerándose debido
+a las propiedades de transition que establecí. Les recomiendo jugar con estas propiedades y ver un video
+en youtube sobre transition en css.
+
+Por otro lado, hay otra forma de registrar el evento de objetos, digamos que seguimos usando la clase de antes
+pero esta vez, añado otra clase:
+
+.texto:hover{
+    color: black;
+}
+
+Esto hace exactamente lo mismo que hice en el JS. 
+Le dice al programa que cada vez que los objetos de clase .texto tengan el cursor por encima (a esto
+se lo denomina estar en estado hover) se actualizen las propiedades definidas, en este caso el color.
+En este caso también lo hará en forma progresiva acelerada y desacelerada por en la clase original,
+es decir .texto, le definimos cuáles son sus características de transición.
+Como hover, existen muchos otros eventos que se pueden tener en cuenta! les recomiendo leer con antención
+los cambios que cité en este archivo(style.css)
+
+*/
+.bg img{
+    position: fixed;
+width: 200vw;
+height: 250vh;
+margin: 0;
+left: -50vw;
+top: -10vw;
+z-index: -2;
+overflow: hidden;
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+
+}
+
+.container{
+    padding-top: 2px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100vw;
+    background-color: black;
+    z-index: 2;
+    transform: translateY(0px);
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    
+}
+.container ul{
+    padding-right: 15px;
+    left:0;
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    
+}
+.container ul li{
+    font-size:10px;
+    letter-spacing: 1px;
+    border: 1px solid;
+    transform: translateX(-2vw);
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+    border-color: white;
+    font-weight: bold;
+    cursor:pointer;
+    outline: none;
+    user-select: none;
+    color: white;
+    text-align: center;
+    width: 70px;
+    transition-duration: 0.23s;
+    transition-timing-function: ease-in-out;
+}
+.container ul li:hover{
+    
+    width: 80px;
+    background-color: white;
+    color:black
+}
+.container ul ul{
+    width: 30%;
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding-right: 35%;
+    border-right: 1px solid white;
+}
+.sides{
+    left: 0;
+    top: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.sides div ul{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    gap: 60vw;
+    
+   
+}
+.sides div ul li{
+    transform: translateX(-20%);
+    
+}
+.sides div ul li div{
+    transform: translateY(-11vh);
+    width: 20vw;
+    height: 130vh;
+    background-image: url("images/side.jpg");
+    background-repeat: repeat-y;
+    
+}
+.trendingContent{
+    transform: translateX(-80vw);
+    display: flex; 
+    justify-content: center;
+    padding-top: 10vh;
+    width: 35%;
+    margin:auto;
+    user-select: none;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    
+}
+.trendingContent ul{
+    list-style: none;
+    position: relative;
+    top: 50px;
+    left: 0%;
+    margin:auto;
+    display: inline-block;
+    
+
+
+}
+.trendingContent ul li div h2{
+    size: 2rem;
+    text-align: center;
+    color:white
+}
+.trendingContent ul li div{
+    min-width: 10rem;
+   
+    max-height: 200px;
+    overflow: hidden;
+    
+    
+}
+.trendingContent ul li div img{
+    width: 100%;
+    height: 100%;
+   
+    transform: translateY(-34%);
+    object-fit: cover;
+    
+    
+    
+}
+.trendingContent ul li{
+    
+    border-top: 2px solid white;
+    margin:0;
+    
+}
+.price{
+    user-select: none;
+}
+.price h2{
+    border: 1px solid white;
+    transition: 0.3s 0s ease-in-out;
+    cursor: pointer;
+    width: 50%;
+    
+    margin:auto;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    transform: translateY(15%);
+
+}
+.price h2:hover{
+    background-color: white;
+    color:black;
+    transform: translateY(5%);
+
+}
+
+.aboutMeOne{
+    
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    transform: translateX(100vw);
+    justify-content: center;
+    user-select: none;
+    padding-top: 150px;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+    
+
+    
+}
+
+.aboutMeOne ul{
+    position: relative;
+    
+    display: flex;
+    list-style: none;
+    
+}
+.aboutMeOne ul li div{
+   max-width: 300px;
+}
+.aboutMeOne ul li div img{
+    border: 0px solid white;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 30%;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+.aboutMeOne ul li div img:hover{
+    opacity: 80%;
+}
+.aboutMeOne ul li div p{
+    color: white;
+}
+
+.foot{
+    background-color: black;
+    position: relative;
+    bottom: 0;
+    user-select: none;
+    transform: translateY(5vh);
+    
+    
+    
+    margin:0;
+    left: 0;
+    width: 100vw;
+}
+.foot ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.foot ul li p{
+    color: gray;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    user-select: none;
+}
+.foot ul li p:hover{
+    color:white;
+    cursor: pointer;
+}
+
+.cool{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.cool ul{
+    display: flex;
+    list-style: none;
+    
+}
+.cool ul div{
+    max-width: 350px;
+}
+.cool ul li div p{
+    color: white;
+}
